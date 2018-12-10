@@ -16,7 +16,11 @@ install:
     dir %CYG_ROOT%
 
     %CYG_ROOT%\bin\bash.exe -l -c "/usr/bin/easy_install-2.7 future"
-
+    
+cache:
+- C:\cygwin\var\cache
+- C:\cygwin64\var\cache
+- C:\work\ardupilot\.git
 build_script:
 - cmd: >-
     git clone --depth=1 --branch=master https://github.com/ArduPilot/ardupilot.git C:\work\ardupilot\
