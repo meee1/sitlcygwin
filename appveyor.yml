@@ -9,13 +9,11 @@ environment:
   CYG_SETUP: setup-x86_64.exe
 install:
 - cmd: >-
-
     curl -o setup-cygwin.exe https://www.cygwin.com/%CYG_SETUP%
 
     setup-cygwin.exe --quiet-mode --no-shortcuts --only-site -R "%CYG_ROOT%" -P gcc-g++,git,procps,libexpat,python,python-setuptools,cygwin32-gcc-g++
 
     dir %CYG_ROOT%
-    dir %CYG_ROOT%\bin
 
     %CYG_ROOT%\bin\bash.exe -l -c "/usr/bin/easy_install-2.7 future"
 
@@ -42,7 +40,7 @@ artifacts:
   name: sitl
 deploy_script:
 - cmd: >-
-    mkdir c:\%CYG_ROOT\home\media
+    mkdir %CYG_ROOT\home\media
 
     echo %sitlkey% > c:\%CYG_ROOT\home\media\sitlkey
 
