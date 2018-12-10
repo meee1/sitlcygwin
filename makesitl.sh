@@ -11,7 +11,7 @@ git reset --hard origin/master
 git clean -f
 git checkout -f master 2>&1
 git pull
-git submodule update --init -f
+git submodule update --init --recursive -f
 
 # build for 32 bit target
 CXX=i686-pc-cygwin-g++.exe CC=i686-pc-cygwin-gcc ./waf configure --board sitl
