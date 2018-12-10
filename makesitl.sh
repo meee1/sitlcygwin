@@ -11,12 +11,11 @@ git reset --hard origin/master
 git clean -f
 git checkout -f master 2>&1
 git pull
-git submodule update --init --recursive -f
+git submodule update --init -f
 
 # build for 32 bit target
 CXX=i686-pc-cygwin-g++.exe CC=i686-pc-cygwin-gcc ./waf configure --board sitl
 
-cat build/config.log
 /usr/bin/python waf -j4 copter
 /usr/bin/python waf -j4 plane
 /usr/bin/python waf -j4 rover
