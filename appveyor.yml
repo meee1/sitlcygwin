@@ -23,7 +23,7 @@ cache:
 - C:\work\ardupilot\.git
 build_script:
 - cmd: >-
-    git clone --depth=1 --branch=master https://github.com/ArduPilot/ardupilot.git C:\work\ardupilot\
+    rem git clone --depth=1 --branch=master https://github.com/ArduPilot/ardupilot.git C:\work\ardupilot\
     
     cd C:\work\ardupilot\
     
