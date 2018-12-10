@@ -5,20 +5,20 @@ clone_folder: C:\work\
 init:
 - cmd: git config --global core.autocrlf false
 environment:
-  CYG_ROOT: C:\cygwin
+  CYG_ROOT: C:\cygwin64
+  CYG_SETUP: setup-x86_64.exe
 install:
 - cmd: >-
+
+    curl -o setup-cygwin.exe https://www.cygwin.com/%CYG_SETUP%
+
+    setup-cygwin.exe --quiet-mode --no-shortcuts --only-site -R "%CYG_ROOT%" -P gcc-g++,git,procps,libexpat,python,python-setuptools,cygwin32-gcc-g++
+
     dir %CYG_ROOT%
+    dir %CYG_ROOT%\bin
 
-    %CYG_ROOT%\setup-x86.exe --quiet-mode --no-shortcuts --only-site -R "%CYG_ROOT%" -P ccache,python-setuptools
-    
-    %CYG_ROOT%\bin\bash.exe -l -c "whereis pip"
+    %CYG_ROOT%\bin\bash.exe -l -c "/usr/bin/easy_install-2.7 future"
 
-    %CYG_ROOT%\bin\bash.exe -l -c "whereis easy_install"
-    
-    %CYG_ROOT%\bin\bash.exe -l -c "/usr/bin/easy_install-2.7 pip"
-    
-    %CYG_ROOT%\bin\bash.exe -l -c "/usr/bin/pip2.7 install future pexpect"
 build_script:
 - cmd: >-
     git clone --depth=1 --branch=master https://github.com/ArduPilot/ardupilot.git C:\work\ardupilot\
@@ -31,8 +31,6 @@ build_script:
     
     %CYG_ROOT%\bin\bash.exe -l -c "chmod 755 /cygdrive/c/work/makesitl.sh"
     
-    %CYG_ROOT%\bin\bash.exe -l -c "ls -al /cygdrive/c/work/"
-    
     %CYG_ROOT%\bin\sh.exe /cygdrive/c/work/makesitl.sh
     
     cd c:\work\sitl
@@ -44,9 +42,9 @@ artifacts:
   name: sitl
 deploy_script:
 - cmd: >-
-    mkdir c:\cygwin64\home\media
+    mkdir c:\%CYG_ROOT\home\media
 
-    echo %sitlkey% > c:\cygwin64\home\media\sitlkey
+    echo %sitlkey% > c:\%CYG_ROOT\home\media\sitlkey
 
     rem %CYG_ROOT%\bin\rsync -Pv -e '/usr/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /home/media/sitlkey' *.elf michael@mega.ardupilot.org:MissionPlanner/sitl/
 
