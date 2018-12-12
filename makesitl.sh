@@ -26,6 +26,11 @@ cp /cygdrive/c/work/ardupilot/build/sitl/bin/arduplane.exe /cygdrive/c/work/sitl
 cp /cygdrive/c/work/ardupilot/build/sitl/bin/arducopter.exe /cygdrive/c/work/sitl/ArduCopter.elf
 cp /cygdrive/c/work/ardupilot/build/sitl/bin/arducopter-heli.exe /cygdrive/c/work/sitl/ArduHeli.elf
 
+strip /cygdrive/c/work/sitl/APMrover2.elf
+strip /cygdrive/c/work/sitl/ArduPlane.elf
+strip /cygdrive/c/work/sitl/ArduCopter.elf
+strip /cygdrive/c/work/sitl/ArduHeli.elf
+
 cp /usr/i686-pc-cygwin/sys-root/usr/bin/*.dll /cygdrive/c/work/sitl/
 
 cd /cygdrive/c/work/sitl/
