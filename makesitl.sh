@@ -14,7 +14,7 @@ git pull
 git submodule update --init --recursive -f
 
 # build for 32 bit target
-CXX=i686-pc-cygwin-g++.exe CC=i686-pc-cygwin-gcc ./waf configure --board sitl
+AR=i686-pc-cygwin-ar CXX=i686-pc-cygwin-g++.exe CC=i686-pc-cygwin-gcc ./waf configure --board sitl
 
 /usr/bin/python waf -j4 copter
 /usr/bin/python waf -j4 plane
